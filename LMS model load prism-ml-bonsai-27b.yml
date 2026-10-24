@@ -1,0 +1,22 @@
+info:
+  name: LMS model load prism-ml/bonsai-27b
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://10.0.0.34:1234/api/v1/models/load
+  body:
+    type: json
+    data: |-
+      {
+        "model": "prism-ml/bonsai-27b"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

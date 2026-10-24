@@ -1,0 +1,50 @@
+info:
+  name: LMS model settings console
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://10.0.0.34:1234/api/v1/models
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        (() => {
+          const body = res.getBody();
+          const modelList = body.models || [];
+          const rows = [];
+
+          modelList.forEach((model) => {
+            const instances = model.loaded_instances || [];
+
+            instances.forEach((instance) => {
+              const config = instance.config || {};
+
+              rows.push({
+                model: model.display_name || model.key,
+                instance: instance.id,
+                context: config.context_length ?? "-",
+                max_context: model.max_context_length ?? "-",
+                batch: config.eval_batch_size ?? "-",
+                flash_attention: config.flash_attention ?? "-",
+                kv_cache_gpu: config.offload_kv_cache_to_gpu ?? "-"
+              });
+            });
+          });
+          
+          console.log(JSON.stringify(rows, null, 2));
+          
+        })();
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

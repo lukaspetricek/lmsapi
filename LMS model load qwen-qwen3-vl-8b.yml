@@ -1,0 +1,22 @@
+info:
+  name: LMS model load qwen/qwen3-vl-8b
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://10.0.0.34:1234/api/v1/models/load
+  body:
+    type: json
+    data: |-
+      {
+        "model": "qwen/qwen3-vl-8b"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

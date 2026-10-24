@@ -1,0 +1,28 @@
+info:
+  name: LMS model check ok
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://10.0.0.34:1234/v1/chat/completions
+  body:
+    type: json
+    data: |-
+      {
+        "model": "",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply OK"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

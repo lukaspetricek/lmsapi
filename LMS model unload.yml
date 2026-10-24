@@ -1,0 +1,25 @@
+info:
+  name: LMS model unload
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: http://10.0.0.34:1234/api/v1/models/unload
+  body:
+    type: json
+    data: |-
+      {
+      //   "instance_id": "prism-ml/bonsai-27b"
+      //   "instance_id": "google/gemma-4-e4b"
+      //   "instance_id": "google/gemma-4-e4b:2"
+        "instance_id": "qwen/qwen3-vl-8b"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

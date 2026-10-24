@@ -1,0 +1,23 @@
+info:
+  name: LMS model download
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: http://10.0.0.34:1234/api/v1/models/download
+  body:
+    type: json
+    data: |-
+      {
+        "model": "https://huggingface.co/lmstudio-community/qwen3.5-0.8b-gguf",
+        "quantization": "Q4_K_M"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
